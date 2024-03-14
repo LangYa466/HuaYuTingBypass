@@ -29,7 +29,7 @@ class Velocity : Module() {
     /**
      * OPTIONS
      */
-    val modeValue = ListValue("Mode", arrayOf("Simple", "Jump","Hyt"), "NoXZ")
+    val modeValue = ListValue("Mode", arrayOf("Simple", "Jump","Hyt"), "Hyt")
 
     //Simple
     private val horizontalValue = FloatValue("Horizontal", 0F, 0F, 1F).displayable { modeValue.get() == "Simple" }
