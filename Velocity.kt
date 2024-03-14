@@ -34,24 +34,20 @@ class Velocity : Module() {
     //Simple
     private val horizontalValue = FloatValue("Horizontal", 0F, 0F, 1F).displayable { modeValue.get() == "Simple" }
     private val verticalValue = FloatValue("Vertical", 0F, 0F, 1F).displayable { modeValue.get() == "Simple" }
-    
+
 
     // Hyt
     private val packetSprintValue = BoolValue("PacketSprint", true).displayable { modeValue.get() == "Hyt" }
     private val repeatValue = IntegerValue("Repeat", 8, 1, 12).displayable { modeValue.get() == "Hyt" }
 
-    private var grimNoAntiKB = 0
-    private var cancel = false
     private var lag = false
+    private var press = false
 
     /**
      * VALUES
      */
     private var velocityTimer = MSTimer()
     private var velocityInput = false
-    private var press = false
-    private var grimReduce = 0
-
     var x = 0.0
     var y = -0.1
     var z = 0.0
@@ -59,10 +55,7 @@ class Velocity : Module() {
         get() = modeValue.get()
 
     override fun onDisable() {
-        cancel = false
-        grimNoAntiKB = 0
         mc.thePlayer?.speedInAir = 0.02F
-        grimReduce = 0
         velocityInput = false
         mc.timer.timerSpeed = 1f
         press = false
@@ -80,7 +73,7 @@ class Velocity : Module() {
                     press = false
                 }
             }
-            
+
             "hyt" -> {
 
                 if (!mc.thePlayer!!.serverSprintState && packetSprintValue.get()) {
@@ -140,7 +133,7 @@ class Velocity : Module() {
                     packet.motionY = (packet.getMotionY() * vertical).toInt()
                     packet.motionZ = (packet.getMotionZ() * horizontal).toInt()
                 }
-                
+
                 "jump" -> {
                     press = true
                 }
