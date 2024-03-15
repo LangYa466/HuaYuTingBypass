@@ -1,6 +1,6 @@
 package net.ccbluex.liquidbounce.features.module.modules.combat
 
-import net.ccbluex.liquidbounce.RedBone
+import net.ccbluex.liquidbounce.LiquidBounce
 import net.ccbluex.liquidbounce.api.minecraft.network.play.client.ICPacketUseEntity
 import net.ccbluex.liquidbounce.event.*
 import net.ccbluex.liquidbounce.features.module.Module
@@ -87,13 +87,13 @@ class Velocity : Module() {
                 repeat(repeatValue.get()) {
                     mc2.player.connection.sendPacket(
                         CPacketUseEntity(
-                            RedBone.moduleManager.getModule(KillAura::class.java).target!!.unwrap(),
+                            LiquidBounce.moduleManager.getModule(KillAura::class.java).target!!.unwrap(),
                             EnumHand.MAIN_HAND
                         )
                     )
                     mc.netHandler.addToSendQueue(
                         classProvider.createCPacketUseEntity(
-                            RedBone.moduleManager.getModule(
+                            LiquidBounce.moduleManager.getModule(
                                 KillAura::class.java
                             ).target!!.asEntityLivingBase(), ICPacketUseEntity.WAction.ATTACK
                         )
